@@ -1,0 +1,996 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+        <script src="https://kit.fontawesome.com/0a96adf822.js" crossorigin="anonymous"></script>
+        <title>Pastries</title>
+    </head>
+    <body>
+        <style>
+            *{
+                resize: none;
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
+            :root {
+                --animate-delay: 2.9s;
+              }
+            a{
+                text-decoration: none;
+                color: white;
+            }
+            body{
+                animation: fadeInDown;
+                animation-duration: 2.3s;
+                font-family: 'Lobster', serif;
+                background: #D0BBBB;
+            }
+            .testim{
+                width: 100%;
+                /* position: absolute; */
+                margin-top: 10%;
+                transform: translateY(-50%);
+            }
+            .testim .wrap{
+                position: relative;
+                width: 100%;
+                max-width: 1020px;
+                padding: 40px 20px;
+                margin: auto;
+            }
+            .testim .arrow{
+                display: block;
+                position: absolute;
+                color: rgb(33, 32, 32);
+                cursor: pointer;
+                font-size: 2em;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: all .3s ease-in-out;
+                padding: 5px;
+                z-index: 22222222;
+            }
+            .testim .arrow:before{
+                cursor: pointer;
+            }
+            .testim .arrow.left{
+                right: 100%;
+            }
+            .testim .arrow.right{
+                right: 1%;
+            }
+            .testim .arrow:hover{
+                color: #999590;
+            }
+            .testim .dots{
+                text-align: center;
+                position: absolute;
+                width: 100%;
+                bottom: 1%;
+                left: 0;
+                display: block;
+                z-index: 3333;
+                height: 12px;
+            }
+            .testim .dots .dot{
+                list-style-type: none;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border: 1px solid #eee;
+                margin: 0 10px;
+                cursor: pointer;
+                transition: all .5s ease-in-out;
+                position: relative;
+            }
+            .testim .dots .dot.active,
+            .testim .dots .dot:hover{
+            background: #ea830e;
+            border-color: #ea830e;
+            }
+
+            .testim .dots .dot.active{
+                animation: testim-scale .5s ease-in-out forwards;
+            }
+            .testim .cont{
+                position: relative;
+                overflow: hidden;
+            }
+            .testim .cont > div{
+                text-align: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0 0 70px 0;
+                opacity: 0;
+            }
+            .testim .cont > div.inactive{
+                opacity: 1;
+            }
+            .testim .cont > div.active{
+                
+                position: relative;
+                opacity: 1;
+                
+            }
+            .testim .cont div .img img{
+                display: block;
+                width: 30%;
+                height: 100px;
+                margin: auto;
+                float: right;
+                margin-right: 10%;
+            }
+            .testim .cont div h2{
+                color: #ea830e;
+                font-size: 1em;
+                margin: 15px 0;
+            }
+            .testim .cont div p{
+                float: left;
+                font-size: 1.5em;
+                color: rgb(46, 45, 45);
+                width: 50%;
+                margin: auto;
+            }
+
+            .testim .cont div.active .img img{
+                animation: testim-show .5s ease-in-out forwards;
+            }
+            .testim .cont div.active h2{
+                animation: testim-content-in .4s ease-in-out forwards;
+            }
+            .testim .cont div.active p {
+                animation: testim-content-in .5s ease-in-out forwards;
+            }
+            .testim .cont div.inactive .img img{
+                animation: testim-hide .5s ease-in-out forwards;
+            }
+            .testim .cont div.inactive h2{
+                animation: testim-content-out .4s ease-in-out forwards;
+            }
+            .testim .cont div.inactive p {
+                animation: testim-content-out .5s ease-in-out forwards;
+            }
+
+            @keyframes testim-scale {
+                0% {
+                    box-shadow: 0px 0px 0px 0px #eee;
+                }
+                35% {
+                    box-shadow: 0px 0px 10px 5px #eee;
+                }
+                70% {
+                    box-shadow: 0px 0px 10px 5px #ea830e;
+                }
+                100% {
+                    box-shadow: 0px 0px 0px 0px #ea830e;
+                }
+            }
+
+            @keyframes testim-content-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes testim-content-out {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(-100%);
+                }
+            }
+            @keyframes testim-show {
+                from {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            @keyframes testim-hide {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+            }
+            /* coding with nick */
+
+            /* Responsive */
+
+            @media all and (max-width: 300px) {
+                body {
+                    font-size: 14px;
+                }
+            }
+            @media all and (max-width: 500px) {
+                .testim .arrow{
+                    font-size: 1.5rem;
+                }
+                .testim .cont div p{
+                    line-height: 25px;
+                }
+                .testim{
+                    margin-top: 60%;
+                }
+            }
+            .top{
+                border-radius: 2%;
+                width: 100%;
+                background: #E8D389;
+            }
+            nav{
+                display: flex;
+                justify-content: space-around;
+                margin-left: 60%;
+            }
+            nav ul{
+                display: flex;
+            }
+            nav li{
+                list-style: none;
+            }
+            nav li a{
+                border-radius: 4px;
+                padding: 7px 10px;
+                padding: 1rem;
+                text-decoration: none;
+                color: black;
+                border: 1px solid transparent;
+                display: block;
+            }
+            a{
+                margin: 5%;
+            }
+            a.active, a:hover{
+                border-bottom: 2px solid grey;
+                transition: 1s;
+            }
+            header{
+                top: 4%;
+                left: 10%;
+                height: 15%;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                position: absolute;
+                width: 17%;
+            }
+            label{
+                font-size: 1em;
+            }
+            .circle{
+                text-align: center;
+                z-index: 100;
+                color: rgba(217, 209, 99, 0.875);
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                background: darkgrey;
+            }
+            .side{
+                float: right;
+            }
+            .my-pic{
+                position: absolute;
+                left: 67%;
+                z-index: 1;
+            }
+            .items{
+                text-align: center;
+            }
+            #project{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin: 50px 0px;
+            }
+            .project-heading{
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .project-heading h3{
+                font-size: 2.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: #222222;
+            }
+            .project-heading span{
+                color: #f33c3c;
+            }
+            .project-filter{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                border: 1px solid rgba(237, 237, 237, 0.6);
+                flex-wrap: wrap;
+                margin: 20px;
+            }
+            .project-filter li{
+                margin: 10px;
+                padding: 5px 20px;
+                color: #9b9b9b;
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+                font-weight: 400;
+                cursor: pointer;
+                user-select: none;
+            }
+            .project-filter-active{
+                background: #f0f0f0;
+                color: #272727;
+            }
+            .project-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                max-width: 1200px;
+                margin: auto;
+                height: 400px;
+            }
+            .project-box{
+                width: 20%;
+                padding: 15px;
+                border: 1px solid transparent;
+                margin: 20px;
+                /* display: none; */
+            }
+            .project-box img{
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 1px solid rgb(20, 234, 106);
+            }
+            .project-container .title{
+                background: rgba(20, 20, 20, 0.495);
+                color: #cecccc;
+                text-align: center;
+                /* display: none; */
+                height: 20%;
+                overflow: visible;
+            }
+            .project-container .title:hover{
+                display: block;
+                background: rgb(243, 243, 243);
+                color: black;
+            }
+            .project-container a{
+                text-decoration: none;
+            }
+            .more{
+                position: relative;
+                margin-top: 50%;
+                text-align: center;
+            }
+            .link{
+                text-decoration: none;
+                color: black;
+                border-bottom: 2px solid black;
+            }
+            ::placeholder{
+                color: rgba(0, 0, 0, 0.333);
+            }
+            .feedback{
+                margin-left: 40%;
+            }
+            #feedback{
+                margin-top: 10%;
+            }
+            form{
+                margin: 5%;
+                display: flex;
+                flex-direction: column;
+            }
+            input, textarea{
+                margin: 10px 0;
+                background: transparent;
+                border: 0;
+                border-bottom: 2px solid transparent;
+                padding: 10px;
+                width: 100%;
+            }
+            input[type=text], input[type=email], textarea {
+                width: 40%;
+                padding: 12px;
+                border-bottom: 1px solid black;
+                border-radius: 4px;
+                resize: none;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+            }
+            .rignt{
+                margin-right: 0;
+            }
+            .left{
+                float: left;
+            }
+            .right-icon{
+                text-decoration: none;
+                margin-top: 3%;
+                font-size: 1.5em;
+                margin-right: 10%;
+                float: right;
+            }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+            ul{
+                list-style: none;
+            }
+            .fa-facebook{
+                color: blue;
+            }
+            .fa-twitter{
+                color: rgb(92, 202, 238);
+            }
+            .fa-instagram{
+                background: #d6249f;
+                background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+            }
+            img {
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -o-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
+            }
+            .curve{
+                margin-left: 37%;
+            }
+            .curve1{
+                margin-top: 14%;
+                float: right;
+            }
+            input[type=submit] {
+                width: 43%;
+                background-color: #04AA6D;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                float: right;
+            }
+            input[type=submit]:hover {
+                background-color: #45a049;
+                }
+                input[type=submit]:link {
+                color: green;
+                text-decoration: none;
+                }
+                input[type=submit]:visited {
+                color: pink;
+                text-decoration: none;
+                }
+                input[type=submit]:hover {
+                color: rgb(157, 0, 255);
+                text-decoration: underline;
+                }
+                input[type=submit]:active {
+                color: rgba(140, 255, 0, 0.455);
+                text-decoration: underline;
+                }
+                .about-heading{
+                    text-align: center;
+                }
+                .about-me .img img{
+                    width: 100%;
+                    height: 100%;
+                }
+                .about-me{
+                    margin: 20%;
+                }
+                .about-me .img{
+                    float: right;
+                    width: 10%;
+                    height: 10%;
+                    border-radius: 60%;
+                    border:2px solid red;
+                    background: transparent;
+                }
+                .description p{
+                    width: 50%;
+                    float: left;
+                }
+                .dropbtn {
+                    /* background-color: #4CAF50; */
+                    border-radius: 4px;
+                    padding: 7px 10px;
+                    padding: 1rem;
+                    text-decoration: none;
+                    color: black;
+                    border: 1px solid transparent;
+                    display: block;
+                    cursor: pointer;
+                }
+                
+                .dropbtn:hover, .dropbtn:focus, .dropbtn:visited {
+                    border-bottom: 2px solid grey;
+                    transition: 1s;
+                }
+                .dropdown-content {
+                    left: 71%;
+                    top: 15%;
+                    z-index: 1;
+                    display: none;
+                    position: absolute;
+                    width: 10%;
+                    background-color: #150e0e;
+                    overflow: auto;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
+                }
+                .dropdown-content a:hover{
+                    background-color: rgb(0, 208, 255);
+                    color: rgb(228, 17, 55);
+                }
+                
+                .dropdown-content a {
+                    color: rgb(239, 236, 236);
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    border-color: #8845f4;
+                    /* text-transform: uppercase; */
+                }
+                .toggle-button{
+                    position: absolute;
+                    top: .75rem;
+                    right: 2rem;
+                    display: none;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    width: 30px;
+                    height: 21px;
+                }
+
+                .toggle-button .bar{
+                    height: 3px;
+                    width: 100%;
+                    background-color: transparent;
+                    border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -ms-border-radius: 10px;
+                    -o-border-radius: 10px;
+                    transition: .4s;
+                }
+                
+                .dropdown-content a:hover {background-color: #f1f1f1;}
+                .show {display:block;}
+                @media screen and (max-width: 991px){
+                    .dropdown-content{
+                        text-align: center;
+                        width: 30%;
+                        font-size: 1em;
+                        left: 60%;
+                        margin-top: 5%;
+                        background: transparent;
+                    }
+                    .dropdown-content a:hover{
+                        background: transparent;
+                        border-bottom: 2px solid grey;
+                    }
+                    
+                    .dropdown-content a {
+                        color: rgb(239, 236, 236);
+                        padding: 16px 16px 6px 6px;
+                        display: block;
+                        border: transparent;
+                    }
+                    .top{
+                        width: 100%;
+                    }
+                    .cont{
+                        margin-top: 35%;
+                    }
+
+                    .toggle-button{
+                        margin-right: 10%;
+                        position: fixed;
+                        display: inline-block;
+                        cursor: pointer;
+                        font-size: 1.7em;
+                        z-index: 1;
+                    }
+                    .bar1, .bar2, .bar3 {
+                        width: 25px;
+                        height: 5px;
+                        background-color: rgb(20, 21, 20);
+                        margin: 6px 0;
+                        transition: 0.4s;
+                    }
+                    
+                    .change .bar1 {
+                        transform: translate(0, 11px) rotate(-45deg);
+                    }
+                    
+                    .change .bar2 {opacity: 0;}
+                    
+                    .change .bar3 {
+                        transform: translate(0, -11px) rotate(45deg);
+                    }
+                    
+                    nav{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    
+                    nav ul{
+                        display: none;
+                        flex-direction: column;
+                        top: 5rem;
+                        position: fixed;
+                        background-color: rgba(45, 43, 41, 0.73);
+                        text-align: center;
+                        height: 70%;
+                        width: 100%;
+                        transition: 5.4s;
+                        left: 0;
+                        z-index: 1;
+                        -webkit-transition: 5.4s;
+                        -moz-transition: 5.4s;
+                        -ms-transition: 5.4s;
+                        -o-transition: 5.4s;
+                    }
+                    
+                    nav li{
+                        list-style: none;
+                        display: block;
+                        text-align: center;
+                        padding: 15px 2%;
+                        margin-left: 40%;
+                        justify-items: center;
+                        font-size: 1.7em;
+                    }
+
+                    nav li a, .nav .dropbtn{
+                        padding: .7rem;
+                        display: block;
+                        text-decoration: none;
+                        /* background-color: #003333; */
+                        color: rgba(171, 99, 65, 0.888);
+                        justify-items: center;
+                        font-size: .7em;
+                        text-transform: uppercase;
+                        border: 1px solid transparent;
+                        padding: 0px 0px;
+                        border-radius: 3px;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        text-align: center;
+                        width: 20%;
+                        z-index: 1;
+                    }
+                    .nav .dropbtn{
+                        font-size: 1.2em;
+                    }
+                    nav li a.active, a:hover{
+                        transition: 5s;
+                        -webkit-transition: 5s;
+                        -moz-transition: 5s;
+                        -ms-transition: 5s;
+                        -o-transition: 5s;
+                    }
+                    header{
+                        top: 0;
+                    }
+                    #feedback{
+                        margin-top: 20%;
+                    }
+                    .arrow, .fa-arrow-down{
+                        display: none;
+                    }
+                }
+                @media screen and (max-width: 550px){
+                    #feedback{
+                        margin-top: 27%;
+                    }
+                    .curve, .curve1{
+                        display: none;
+                    }
+                    .more{
+                        margin-top: 120%;
+                    }
+                }
+                .fa-chevron-down{
+                    margin-top: 10%;
+                }
+        </style>
+        <section class="top">
+            <header>
+                <div class="circle">S</div>
+                <label>Silverline</label>
+            </header>
+            <div class="nav">
+                <nav>
+                    <div class="toggle-button" onclick="nav(this)" id="navy">
+                        <div class="bar1"></div>
+                        <div class="bar3"></div>
+                        <div class="bar2"></div>
+                    </div>
+                    <script>
+                        function nav(x){
+                          x.classList.toggle("change");
+                          var x = document.getElementById('nav');
+                          if (x.style.display == 'block') {
+                            x.style.display = 'none';
+                          }
+                          else {
+                            x.style.display = 'block';
+                          }
+                        }
+                    </script>
+                    <ul id="nav">
+                        <li>
+                            <a href="#" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a href="#items">Items</a>
+                        </li>
+                        <!-- <li class="dropbtn" id="myBtn">About<i class="fa fa-chevron-down" aria-hidden="true"></i></li>
+                        <ul id="myDropdown" class="dropdown-content">
+                            <li>
+                                <a href="about.html" class="drop-link">About</a>
+                            </li>
+                            <li><a href="about.html#videos-page" class="drop-link">Videos</a></li>
+                            <li><a href="about.html#testim" class="drop-link">Clients</a></li>
+                        </ul> -->
+                        <li>
+                            <a href="order.html">Order</a>
+                        </li>
+                        <li>
+                            <a href="#feedback">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <script>
+                // Get the button, and when the user clicks on it, execute myFunction
+                document.getElementById("myBtn").onclick = function() {myFunction()};
+                /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+                function myFunction() {
+                  document.getElementById("myDropdown").classList.toggle("show");
+                }
+            </script>
+            <section class="testim" id="testim">
+                <div class="wrap">
+            
+                    <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+                    <span id="left-arrow" class="arrow left fa fa-chevron-left"></span>
+
+                    <ul class="dots" id="testim-dots">
+                        <li class="dot active"></li>
+                        <li class="dot"></li>
+                        <li class="dot"></li>
+                        <li class="dot"></li>
+                        <li class="dot"></li>
+                    </ul>
+            
+                    <div class="cont" id="testim-content">
+            
+                        <div class="active">
+                            <div class="img">
+                                <img src="Images/woman with pastries.jpg" alt="" class="my-pic" width=”150” height="335">
+                                <img src="Images/french_curve-removebg-preview.png" height="192">
+                            </div>
+                            <p>We make your tommy smile</p>
+                        </div>
+            
+                        <div>
+                            <div class="img"><img src="Images/pastries.jpg" height="200" width="70px"></div>
+                            <p>The best food in town</p>
+                        </div>
+            
+                        <div>
+                            <div class="img"><img src="Images/Eating Pastries.jpg"></div>
+                            <p>Enjoy your moment with Silverline</p>
+                        </div>
+            
+                        <div>
+                            <div class="img"><img src="Images/Best price.jpg"></div>
+                            <p>At the best price</p>
+                        </div>
+            
+                        <div>
+                            <div class="img"><img src="Images/location.png"></div>
+                            <p>Just come see us.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script>
+                // coding with nick
+                    // vars
+                    'use strict'
+                    var testim = document.getElementById("testim"),
+                        testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+                        testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
+                        testimleftArrow = document.getElementById("left-arrow"),
+                        testimRightArrow = document.getElementById("right-arrow"),
+                        testimSpeed = 4500,
+                        currentSlide = 0,
+                        currentActive = 0,
+                        testimTimer
+                        ;
+                    // coding with nick
+                    window.onload = function () {
+    
+                        // Testim Script
+                        function playSlide(slide) {
+                            for (var k = 0; k < testimDots.length; k++) {
+                                testimContent[k].classList.remove("active");
+                                testimContent[k].classList.remove("inactive");
+                                testimDots[k].classList.remove("active");
+                            }
+                            if (slide < 0) {
+                                slide = currentSlide = testimContent.length - 1;
+                            }
+                            if (slide > testimContent.length - 1) {
+                                slide = currentSlide = 0;
+                            }
+                            if (currentActive != currentSlide) {
+                                testimContent[currentActive].classList.add("inactive");
+                            }
+                            testimContent[slide].classList.add("active");
+                            testimDots[slide].classList.add("active");
+    
+                            currentActive = currentSlide;
+    
+                            clearTimeout(testimTimer);
+                            testimTimer = setTimeout(function () {
+                                playSlide(currentSlide += 1);
+                            }, testimSpeed)
+                        }
+                        // coding with nick
+                        testimleftArrow.addEventListener("click", function () {
+                            playSlide(currentSlide -= 1);
+                        })
+                        testimRightArrow.addEventListener("click", function () {
+                            playSlide(currentSlide += 1);
+                        })
+    
+                        for (var l = 0; l < testimDots.length; l++) {
+                            testimDots[l].addEventListener("click", function () {
+                                playSlide(currentSlide = testimDots.indexOf(this));
+                            })
+                        }
+                        playSlide(currentSlide);
+    
+                    }
+    // coding with nick
+                
+    
+            </script>
+        </section>
+        <section class="bottom" id="items">
+            <h2 class="items">See some of the things I make</h2>
+            <div class="project-container">
+                <a href="#" class="project-box web">
+                <div class="title">
+                    <img src="Images/doughnuts.jpg" alt="work">
+                    <hr><br><p class="pa">Doughnuts</p>
+                    <!-- <p class="price">Price: $7</p><br><br> -->
+                </div>
+                </a>
+                <a href="#" class="project-box question">
+                    <div class="title">
+                    <img src="Images/sausage rolls.jpg" alt="work">
+                    <hr><br><br><br><p class="pa">Sausage rolls</p>
+                        <!-- <p class="price">Price: $10</p><br><br><br><br> -->
+                    </div>
+                </a>
+                <a href="#" class="project-box">
+                    <div class="title">
+                    <img src="Images/chinchin.jpg">
+                    <hr><br><br><br><p class="pa">Chinchin</p>
+                    <!-- <p class="price">Price: $7</p><br><br><br><br> -->
+                    </div>
+                </a>
+                <a href="#" class="project-box design" id="design">
+                    <div class="title">
+                    <img src="Images/cakes.jpg" alt="work">
+                    <hr><br><br><br><p class="pa">Cakes</p>
+                    <!-- <p class="price">Price: $7</p><br><br><br><br> -->
+                    </div>
+                </a>
+                <a href="#" class="project-box ai" id="ai">
+                    <div class="title">
+                    <img src="Images/Burger.jpg" alt="work">
+                    <hr><br><br><br><p class="pa">Burger</p>
+                    <!-- <p class="price">Price: $7</p><br><br><br><br> -->
+                    </div>
+                </a>
+                <a href="#" class="project-box app" id="app">
+                    <div class="title">
+                    <img src="Images/meat pie.jpg" alt="work" class="img">
+                    <hr><br><br><br><p class="pa">Meat pie</p>
+                    <!-- <p class="price">Price: $7</p><br><br><br><br> -->
+                    </div>
+                </a>
+        </section>
+        <!-- <div class="more">
+            <a href="items.html" class="link" id="click">more</a>
+        </div> -->
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="curve">
+            <img src="Images/Line_7-removebg-preview.png">
+        </div>
+        <div class="curve1">
+            <img src="Images/Line_8-removebg-preview.png">
+        </div>
+        <br><br><br><br><br>
+        <section id="feedback">
+            <h2 class="feedback">Contact Us</h2>
+            <form id="jquery_form" method="POST" action="https://formsubmit.co/abiafor27@gmail.com" autocomplete="off">
+                <input type="text" name="name" id="name" placeholder="name"required>
+                <input type="email" placeholder="email" id="email" name="name" required>
+                <textarea name="message" id="textarea" cols="30" rows="10" placeholder="message" required></textarea>
+                <input type="hidden" name="_autoresponse" value="Hi there! Thank you for contacting us.">
+                <input type="submit" name="send" value="send">
+            </form><br><br>
+            <script src="https://smtpjs.com/v3/smtp.js">
+            </script>
+            <script>
+                function sendEmail(){
+                    Email.send({
+                        SecureToken : "e76557a2-3c76-45bb-9af3-5e50513f774b",
+                        To : 'marvdcode.co@gmail.com',
+                        From : document.getElementById("email").value,
+                        Subject : "This is the subjec",
+                        Body: "And this is the body"
+                    }).then(
+                        message => alert(message)
+                    );
+                }
+            </script>
+            <script src="js/jquery.min.js"></script>
+            <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"77479aca290f1c10","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
+            <div class="footer">
+                <ul class="left">
+                    <li>Email:<a href="mailto:agbiafor27@gmail.com"> agbiafor27@gmail.com</a></li>
+                    <li>Phone:<a href="tel://2348038683970"> +234 803 868 3970</a></li>
+                    <li>Website:<a href="https://Silverline.com"> Silverline.com</a></li>
+                </ul>
+                <ul class="right-icon">
+                    <li><a href="https://facebook.com/agbi.afor/" target="blank"><i class="fa fa-facebook"></i></a></li>
+                    <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
+                </ul>
+              </div>
+        </section>
+    </body>
+</html>
