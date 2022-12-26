@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
     <head>
@@ -608,6 +607,9 @@
                     p, label, .footer{
                         font-size: 2em;
                     }
+                    label{
+                        display: none;
+                    }
                     input[type=submit]{
                         width: 100%;
                     }
@@ -748,6 +750,9 @@
                     .testim, #items{
                         margin-top: 25%;
                     }
+                    .fa-birthday-cake{
+                        display: none;
+                    }
                 }
                 @media screen and (max-width: 550px){
                     #feedback{
@@ -763,7 +768,10 @@
                 .fa-chevron-down{
                     margin-top: 10%;
                 }
-        </style>
+                .fa-birthday-cake{
+                    margin-left: 12%;
+                }
+            </style>
         <section class="top">
             <header>
                 <div class="circle">S</div>
@@ -931,6 +939,13 @@
             </script>
         </section>
         <section class="bottom" id="items">
+            <span class="fa fa-birthday-cake one" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake two" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake three" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake four" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake five" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake six" aria-hidden="true"></span>
+            <span class="fa fa-birthday-cake seven" aria-hidden="true"></span>
             <h2 class="items">See some of the things I make</h2>
             <div class="project-container">
                 <a href="#" class="project-box web">
@@ -988,7 +1003,7 @@
         </div>
         <br><br><br><br><br>
         <section id="feedback">
-            <h2 class="feedback">Contact Us</h2>
+            <h2 class="feedback">We would like to hear from you</h2>
             <form id="jquery_form" method="POST" action="https://formsubmit.co/abiafor27@gmail.com" autocomplete="off">
                 <input type="text" name="name" id="name" placeholder="name"required>
                 <input type="email" placeholder="email" id="email" name="name" required>
